@@ -1,0 +1,16 @@
+<section class="listing-apply">
+    <h2 class="section-heading">Register</h2>
+    <form [formGroup]="taskForm" (submit)="submitTask()">
+      <label for="task-name">Email</label>
+      <input id="task-name" type="text" formControlName="Email">
+  
+      <label for="task-goal">Password</label>
+      <input id="task-goal" type="text" formControlName="Password">
+      <label for="task-goal">Confirm Password</label>
+        <input id="task-goal" type="text" formControlName="Confirm_Password">
+  
+  
+      <button type="submit" class="primary">Register</button>
+    </form>
+    
+  </section>

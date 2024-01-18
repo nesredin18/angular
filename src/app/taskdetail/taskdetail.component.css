@@ -1,0 +1,52 @@
+/* Styles for the listing-item container */
+.listing-description{
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: auto;
+  }
+
+.listing-item {
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Vertically center items */
+    margin-bottom: 20px;
+     /* Add margin at the bottom for separation */
+  }
+  
+  /* Styles for the task-info container (task name and achievement/goal) */
+  .task-info {
+    flex: 0.5; /* Allow the task-info to grow and take available space */
+  }
+  
+  /* Styles for the progress-bar container */
+  .progress-bar {
+    align-items: center;
+    width: 50%;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 5px;
+    margin-left: 10px; /* Add some margin to separate from the task-info */
+  }
+  
+  /* Styles for the progress-fill (dynamic width) */
+  .progress-fill {
+    height: 100%;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+  }
+  
+  /* Styles for the task achievement and goal */
+  .listing-location {
+    font-size: 1rem;
+    color: #0c0909;
+    margin: 0;
+    text-align: center;
+  }
+  .listing-description{
+    margin-left: 30%;
+    margin-top: 10%;
+  }
+  

@@ -1,0 +1,16 @@
+<section class="listing-apply">
+    <h2 class="section-heading">Login</h2>
+    <form [formGroup]="taskForm" (submit)="submitTask()">
+      <label for="task-name">Email</label>
+      <input id="task-name" type="text" formControlName="Email">
+  
+      <label for="task-goal">Password</label>
+      <input id="task-goal" type="text" formControlName="Password">
+  
+  
+      <button type="submit" class="primary">Login</button>
+      <p>Don't have an account? <a [routerLink]="['/register']">Register</a></p>
+
+    </form>
+    
+  </section>

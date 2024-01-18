@@ -1,0 +1,21 @@
+<section class="listing-description">
+  <h1>Task List</h1>
+  <ng-container *ngFor="let location of housingLocationList">
+    <div class="listing-item">
+      <div class="task-info">
+        <h2 class="listing-heading">{{ location.ob_Name }}</h2>
+
+        
+      </div>
+      <div class="progress-bar">
+        
+        <div class="progress-fill" [style.width.%]="(location.result / location.goal) * 100"><p class="listing-location" align-text="center
+          ">{{ location.result }} / {{ location.goal }}</p></div>
+        <a [routerLink]="['/edittask', location.id]">Edit Task</a>
+
+      </div>
+      
+    </div>
+    
+  </ng-container>
+</section>
