@@ -5,14 +5,16 @@ import { TaskserviceService } from '../taskservice.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Taskin } from '../taskin';
+import { response } from 'express';
+
 @Component({
-  selector: 'app-tasks',
+  selector: 'app-activity',
   standalone: true,
   imports: [ReactiveFormsModule,CommonModule,HttpClientModule],
-  templateUrl: './tasks.component.html',
-  styleUrl: './tasks.component.css'
+  templateUrl: './activity.component.html',
+  styleUrl: './activity.component.css'
 })
-export class TasksComponent {
+export class ActivityComponent {
   taskservice: TaskserviceService = inject(TaskserviceService);
 
   taskForm = new FormGroup({
@@ -56,13 +58,14 @@ export class TasksComponent {
       this.taskForm.value.Goal??'',
       this.taskForm.value.Result??'').subscribe(
       response => {
-        alert('Task successfully created.');
-        const haveactivity=confirm('Do you want to add activity for this objective?');
-        if(haveactivity){
-         this.router.navigate(['/activity']);}
-         else{
-           this.router.navigate(['/home']);
-         }
+        
+        alert('Activity successfully created.');
+       const haveactivity=confirm('Do you want to add another activity for this objective?');
+       if(haveactivity){
+        this.router.navigate(['/activity']);}
+        else{
+          this.router.navigate(['/home']);
+        }
       },
       error => {
         alert('Error during creation: ' + error.message);
