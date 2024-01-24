@@ -25,7 +25,7 @@ export class TaskserviceService {
     return httpOptions;
   }
 
-  submitApplication(Ob_Name: string, Ob_Description: string, Initial_date: Date, Final_date: Date, Status: string, Goal: string, Result: string) {
+  submitApplication(Ob_Name: string, Ob_Description: string, Initial_date: string, Final_date: string, Status: string, Goal: string, Result: string) {
     const data = {
       Ob_Name: Ob_Name,
       Ob_Description: Ob_Description,

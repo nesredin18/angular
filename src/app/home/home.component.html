@@ -1,11 +1,6 @@
+<h1>Welcome {{ userp?.email }} </h1>
+      
 
-  <h1>Welcome {{ userp?.email }} </h1>
-      
-    <nav >
-      
-      <h1>Select Options</h1>
-      <ul>
-        <li><a routerLink="/tasks" routerLinkActive="active" ariaCurrentWhenActive="page">Add Task</a></li>
-        <li><a routerLink="/taskdetail" routerLinkActive="active" ariaCurrentWhenActive="page">Manage Task</a></li>
-      </ul>
-    </nav>
+    <main>
+      <router-outlet></router-outlet>
+    </main>

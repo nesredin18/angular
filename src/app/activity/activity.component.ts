@@ -20,8 +20,8 @@ export class ActivityComponent {
   taskForm = new FormGroup({
     Ob_Name: new FormControl(''),
     Ob_Description: new FormControl(''),
-    Initial_date: new FormControl(new Date()),
-    Final_date: new FormControl(new Date()),
+    Initial_date: new FormControl(),
+    Final_date: new FormControl(),
     Status: new FormControl(''),
     Goal: new FormControl(''),
     Result: new FormControl('')

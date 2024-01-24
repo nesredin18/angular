@@ -7,12 +7,14 @@ import { LoginService } from '../login.service';
 import { userprofile } from '../login-in';
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
+import { SidebarComponent } from '../common/sidebar/sidebar.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet,RouterLinkActive,RouterLink,HttpClientModule,CommonModule],
+  imports: [RouterOutlet,RouterLinkActive,RouterLink,HttpClientModule,CommonModule,SidebarComponent,DashboardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -27,6 +29,13 @@ export class HomeComponent {
     this.userp = userp;
     console.log(userp);
   });
+
+  
+}
+status = false;
+addToggle()
+{
+  this.status = !this.status;       
 }
 
   

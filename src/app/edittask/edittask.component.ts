@@ -18,8 +18,8 @@ export class EdittaskComponent {
   taskForm = new FormGroup({
     Ob_Name: new FormControl(''),
     Ob_Description: new FormControl(''),
-    Initial_date: new FormControl(new Date()),
-    Final_date: new FormControl(new Date()),
+    Initial_date: new FormControl(),
+    Final_date: new FormControl(),
     Status: new FormControl(''),
     Goal: new FormControl(''),
     Result: new FormControl('')
@@ -38,14 +38,34 @@ export class EdittaskComponent {
     });
   }
 
+  private formatDateToUTC(date: any): Date | null {
+    if (!date || !(date instanceof Date)) {
+      console.warn('formatDateToUTC called with a non-Date type:', date);
+      return null; // or return a default Date if appropriate
+    }
+  
+    return new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
+  }
+  
+
   updateFormValues() {
+    const initialDate = this.housingLocation?.initial_date instanceof Date 
+    ?this.housingLocation?.initial_date
+    : new Date(this.housingLocation?.initial_date||'');
+  const finalDate =this.housingLocation?.final_date instanceof Date 
+    ? this.housingLocation?.final_date
+    : new Date(this.housingLocation?.final_date||'');
+    const utcInitialDate = this.formatDateToUTC(initialDate);
+    const utcFinalDate = this.formatDateToUTC(finalDate);
+    console.log('utcInitialDate:', utcInitialDate ?.toISOString().split('T')[0]);
+    console.log('utcFinalDate:', utcFinalDate ?.toISOString().split('T')[0]);
     if (this.housingLocation) {
       this.taskForm.patchValue({
         Ob_Name: this.housingLocation.ob_Name,
-        Ob_Description: this.housingLocation.Ob_Description,
-        Initial_date: this.housingLocation.Initial_date,
-        Final_date: this.housingLocation.Final_date,
-        Status: this.housingLocation.Status,
+        Ob_Description: this.housingLocation.ob_Description,
+        Initial_date: utcInitialDate?.toISOString().split('T')[0],
+        Final_date:utcFinalDate?.toISOString().split('T')[0],
+        Status: this.housingLocation.status,
         Goal: String(this.housingLocation.goal) || '',
         Result: String(this.housingLocation.result) || ''
       });

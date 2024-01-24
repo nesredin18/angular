@@ -1,10 +1,10 @@
 export interface Taskin {
     id: number;
     ob_Name: string;
-    Ob_Description: string;
-    Initial_date: Date ;
-    Final_date: Date ;
-    Status: string;
+    ob_Description: string;
+    initial_date: Date ;
+    final_date: Date ;
+    status: string;
     goal: number;
     result: number;
 }
