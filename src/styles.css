@@ -18,7 +18,7 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%; /* or 100vh */
-  overflow: hidden; /* Prevent horizontal overflow */
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 :root {
@@ -329,7 +329,7 @@ body {
   padding: 36px 24px;
   font-family: var(--poppins);
   max-height: calc(100vh - 56px);
-  overflow-y: auto;
+
 }
 #content main .head-title {
   display: flex;

@@ -1,0 +1,11 @@
+.logout {
+    cursor: pointer; /* Change cursor to pointer to indicate clickability */
+    color: #007bff; /* Typical link color, adjust as needed */
+    text-decoration: none; /* Optional: remove if you want underline on hover */
+  }
+  
+  .logout:hover {
+ /* Optional: underline on hover for link-like appearance */
+    color: #0056b3; /* Optional: change color on hover */
+  }
+  

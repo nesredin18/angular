@@ -3,9 +3,12 @@ import { Component,inject,OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TaskserviceService } from '../taskservice.service';
 import { HttpClientModule } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Taskin } from '../taskin';
 import { response } from 'express';
+import { ActivityService } from '../activity.service';
+import { SidebarService } from '../sidebar.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-activity',
@@ -15,7 +18,32 @@ import { response } from 'express';
   styleUrl: './activity.component.css'
 })
 export class ActivityComponent {
-  taskservice: TaskserviceService = inject(TaskserviceService);
+
+
+
+  private subscription: Subscription;
+  status = true;
+
+  constructor(private sidebarService: SidebarService,private router: Router) {
+    // Subscribe to the sidebar status
+    this.subscription = this.sidebarService.sidebarStatus$.subscribe(
+      (      status: boolean) => {
+        this.status = status;
+        this.editdashboard(); // Call editdashboard on status change
+      }
+    );
+  }
+
+
+editdashboard()
+{
+  this.status = !this.status;       
+}
+
+ngOnDestroy() {
+  this.subscription.unsubscribe(); // Prevent memory leaks
+}
+  taskservice: ActivityService = inject(ActivityService);
 
   taskForm = new FormGroup({
     Ob_Name: new FormControl(''),
@@ -27,29 +55,18 @@ export class ActivityComponent {
     Result: new FormControl('')
   });
 
-  constructor(private taskService: TaskserviceService, private router: Router) { }
-  private formatDateToUTC(): void {
-    const initialDate = this.taskForm.value.Initial_date;
-    const finalDate = this.taskForm.value.Final_date;
-  
-    if (initialDate) {
-      this.taskForm.patchValue({
-        Initial_date: new Date(initialDate.getTime() - (initialDate.getTimezoneOffset() * 60000))
-      });
-    }
-  
-    if (finalDate) {
-      this.taskForm.patchValue({
-        Final_date: new Date(finalDate.getTime() - (finalDate.getTimezoneOffset() * 60000))
-      });
-    }
-  }
+  route: ActivatedRoute = inject(ActivatedRoute);
+  housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
+
+
+
   
 
   submitTask() {
     
 
     this.taskservice.submitApplication(
+      this.housingLocationId,
       this.taskForm.value.Ob_Name ??'',
       this.taskForm.value.Ob_Description ??'',
       this.taskForm.value.Initial_date ?? new Date(),
@@ -62,7 +79,7 @@ export class ActivityComponent {
         alert('Activity successfully created.');
        const haveactivity=confirm('Do you want to add another activity for this objective?');
        if(haveactivity){
-        this.router.navigate(['/activity']);}
+        this.taskForm.reset(); }
         else{
           this.router.navigate(['/home']);
         }

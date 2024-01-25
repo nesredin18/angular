@@ -6,22 +6,22 @@
   </a>
   <ul class="side-menu top">
       <li class="active">
-        <a [routerLink]="['/dashboard']">
+        <a [routerLink]="['/home/dashboard']">
           <i class='bx bxs-dashboard'></i>
           <span class="text">Dashboard</span>
         </a>
         </li>
         
     <li>
-      <a href="#">
+      <a [routerLink]="['/home/tasks']">
         <i class='bx bxs-shopping-bag-alt' ></i>
-        <span class="text">My Store</span>
+        <span class="text">Create Objectives</span>
       </a>
     </li>
     <li>
-      <a href="#">
+      <a [routerLink]="['/home/taskdetail']">
         <i class='bx bxs-doughnut-chart' ></i>
-        <span class="text">Analytics</span>
+        <span class="text">Manage Objectives</span>
       </a>
     </li>
     <li>
@@ -45,10 +45,11 @@
       </a>
     </li>
     <li>
-      <a href="#" class="logout">
-        <i class='bx bxs-log-out-circle' ></i>
+      <a (click)="logout()" class="logout">
+        <i class='bx bxs-log-out-circle'></i>
         <span class="text">Logout</span>
       </a>
+      
     </li>
 
   </ul>

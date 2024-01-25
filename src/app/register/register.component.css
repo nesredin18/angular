@@ -1,12 +1,21 @@
 /* General styling for the section */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  width: 100%; /* Full width */
+  background-color: #f4f4f4; /* Optional: background color */
+}
 .listing-apply {
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    margin: auto;
-  }
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%; /* Adjust width as necessary */
+  margin: 20px; /* For small screens */
+}
   
   .section-heading {
     text-align: center;

@@ -9,12 +9,13 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef } from '@angular/core';
 import { SidebarComponent } from '../common/sidebar/sidebar.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { NavbarComponent } from '../common/navbar/navbar.component';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterOutlet,RouterLinkActive,RouterLink,HttpClientModule,CommonModule,SidebarComponent,DashboardComponent],
+  imports: [RouterOutlet,RouterLinkActive,RouterLink,HttpClientModule,CommonModule,SidebarComponent,DashboardComponent,NavbarComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

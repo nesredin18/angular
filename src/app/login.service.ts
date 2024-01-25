@@ -11,14 +11,26 @@ export class LoginService {
 
   url = 'http://localhost:5192/';
 
+
   constructor(private http: HttpClient, private router: Router,) {}
+  private isLoggedInKey = 'isLoggedIn';
+
 
   submitApplication(Email: string, Password: string) {
     const data = {
       Email: Email,
       Password: Password,
     };
+    localStorage.setItem(this.isLoggedInKey, 'true');
     return this.http.post(this.url + 'Account/login', data)
+}
+
+isAuthenticated(): boolean {
+  return localStorage.getItem(this.isLoggedInKey) === 'true';
+}
+logout(): void {
+  localStorage.removeItem('authToken');
+  localStorage.removeItem(this.isLoggedInKey);
 }
 
 RegisterUser(Email: string, Password: string) {

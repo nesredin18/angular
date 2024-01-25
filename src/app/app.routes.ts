@@ -8,16 +8,23 @@ import { RegisterComponent } from './register/register.component';
 import { ActivityComponent } from './activity/activity.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import { NavbarComponent } from './common/navbar/navbar.component';
+import { AuthGuard } from './auth.guard';
 export const routes: Routes = [
     {path: 'login', component: LoginComponent},
-    { path: 'home', component: HomeComponent },
-    { path: 'tasks', component: TasksComponent },
-    { path: 'taskdetail', component: TaskdetailComponent },
-    { path: 'edittask/:id', component: EdittaskComponent},
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] ,children: [
+        { path: 'dashboard', component: DashboardComponent },
+        { path: 'tasks', component: TasksComponent },
+        { path: 'taskdetail', component: TaskdetailComponent },
+        { path: 'edittask/:id', component: EdittaskComponent},
+        {path: 'activity/:id', component: ActivityComponent},
+        // Other child routes for sidebar navigation
+        { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+
+      ] },
+    
+
     {path: 'register', component: RegisterComponent},
-    {path: 'activity', component: ActivityComponent},
-    {path:'dashboard',component:DashboardComponent},
-    {path:'navbar',component:NavbarComponent},
-    { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
+
+    { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 

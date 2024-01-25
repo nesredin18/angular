@@ -6,6 +6,8 @@ import { Taskin } from '../taskin';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { SidebarService } from '../sidebar.service';
 @Component({
   selector: 'app-edittask',
   standalone: true,
@@ -29,14 +31,30 @@ export class EdittaskComponent {
   housingService = inject(TaskserviceService);
   housingLocation: Taskin | undefined;
   housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
-
-  constructor(private taskService: TaskserviceService, private formBuilder: FormBuilder, private router: Router) {
+  private subscription: Subscription;
+  status = true;
+  constructor(private taskService: TaskserviceService, private formBuilder: FormBuilder, private router: Router,private sidebarService: SidebarService) {
     const housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
     this.housingService.getHousingLocationById(housingLocationId).then(housingLocation => {
       this.housingLocation = housingLocation;
       this.updateFormValues();
     });
+    this.subscription = this.sidebarService.sidebarStatus$.subscribe(
+      (      status: boolean) => {
+        this.status = status;
+        this.editdashboard(); // Call editdashboard on status change
+      }
+    );
   }
+
+  editdashboard()
+{
+  this.status = !this.status;       
+}
+
+ngOnDestroy() {
+  this.subscription.unsubscribe(); // Prevent memory leaks
+}
 
   private formatDateToUTC(date: any): Date | null {
     if (!date || !(date instanceof Date)) {
@@ -81,7 +99,7 @@ deleteTask() {
       response => {
         alert('Task successfully deleted.');
         // Additional actions if needed
-        this.router.navigate(['/taskdetail']);
+        this.router.navigate(['/home/taskdetail']);
       },
       error => {
         alert('Error during deletion: ' + error.message);
@@ -110,7 +128,7 @@ deleteTask() {
       response => {
         alert('Task successfully updated.');
         // Additional actions if needed
-        this.router.navigate(['/taskdetail']);
+        this.router.navigate(['/home/taskdetail']);
       },
       error => {
         alert('Error during updating: ' + error.message);

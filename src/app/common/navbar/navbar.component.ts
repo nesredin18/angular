@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy ,inject} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SidebarService } from '../../sidebar.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { LoginService } from '../../login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,11 +13,12 @@ import { RouterLink } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+loginservice: LoginService = inject(LoginService);
 
   private subscription: Subscription;
   status = true;
 
-  constructor(private sidebarService: SidebarService) {
+  constructor(private sidebarService: SidebarService,private router: Router) {
     // Subscribe to the sidebar status
     this.subscription = this.sidebarService.sidebarStatus$.subscribe(
       (      status: boolean) => {
@@ -34,6 +36,11 @@ editdashboard()
 
 ngOnDestroy() {
   this.subscription.unsubscribe(); // Prevent memory leaks
+}
+
+logout() {
+  this.loginservice.logout();
+  this.router.navigate(['/login']);
 }
 
 

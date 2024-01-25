@@ -48,8 +48,6 @@ export class TasksComponent {
     // Convert dates to UTC
     const utcInitialDate = this.formatDateToUTC(initialDate);
     const utcFinalDate = this.formatDateToUTC(finalDate);
-    console.log('utcInitialDate:', utcInitialDate ?.toISOString().split('T')[0]);
-    console.log('utcFinalDate:', utcFinalDate ?.toISOString().split('T')[0]);
   
     if (utcInitialDate && utcFinalDate) {
       this.taskservice.submitApplication(
@@ -63,10 +61,11 @@ export class TasksComponent {
         this.taskForm.value.Result??''
       ).subscribe(
         response => {
+          console.log(response);
           alert('Task successfully created.');
           const haveactivity=confirm('Do you want to add activity for this objective?');
           if(haveactivity){
-           this.router.navigate(['/activity']);}
+           this.router.navigate(['/home/activity', response]);}
            else{
              this.router.navigate(['/home']);
            }

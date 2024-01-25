@@ -1,3 +1,4 @@
+<div id="content"[ngClass]="status ? 'hide' : ''">
 <section class="listing-apply">
   <h2 class="section-heading">Edit Task</h2>
   <form [formGroup]="taskForm" (submit)="submitTask()">
@@ -33,3 +34,4 @@
     <button type="button" (click)="deleteTask()">Delete Task</button>
   </form>
 </section>
+</div>

@@ -11,7 +11,7 @@
         
         <div class="progress-fill" [style.width.%]="(location.result / location.goal) * 100"><p class="listing-location" align-text="center
           ">{{ location.result }} / {{ location.goal }}</p></div>
-        <a [routerLink]="['/edittask', location.id]">Edit Task</a>
+        <a [routerLink]="['/home/edittask', location.id]">Edit Task</a>
 
       </div>
       

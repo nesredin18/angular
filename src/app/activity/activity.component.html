@@ -1,4 +1,6 @@
+<div id="content"[ngClass]="status ? 'hide' : ''">
 <section class="listing-apply">
+  
     <h2 class="section-heading">Submit Your Task</h2>
     <form [formGroup]="taskForm" (submit)="submitTask()">
       <!-- Input for Ob_Name -->
@@ -31,5 +33,7 @@
   
       <button type="submit" class="primary">Submit Task</button>
     </form>
+ 
   </section>
+</div>
   
