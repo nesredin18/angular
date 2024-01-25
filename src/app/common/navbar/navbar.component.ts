@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy ,inject} from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SidebarService } from '../../sidebar.service';
+import { SidebarService } from '../sidebar.service';
 import { Router, RouterLink } from '@angular/router';
-import { LoginService } from '../../login.service';
+import { LoginService } from '../../users/login.service';
 
 @Component({
   selector: 'app-navbar',

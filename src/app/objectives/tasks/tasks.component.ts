@@ -4,7 +4,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TaskserviceService } from '../taskservice.service';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Taskin } from '../taskin';
+
 
 @Component({
   selector: 'app-tasks',

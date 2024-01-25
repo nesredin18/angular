@@ -1,0 +1,38 @@
+
+<div class="container">
+    <h2> Objective {{housingLocation?.ob_Name}} </h2>
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-1">Job Id</div>
+        <div class="col col-2">Customer Name</div>
+        <div class="col col-3">Amount Due</div>
+        <div class="col col-4">Payment Status</div>
+      </li>
+      <li class="table-row">
+        <div class="col col-1" data-label="Job Id">{{housingLocation?.goal}}</div>
+        <div class="col col-2" data-label="Customer Name">{{housingLocation?.initial_date}}</div>
+        <div class="col col-3" data-label="Amount">{{housingLocation?.final_date}}</div>
+        <div class="col col-4" data-label="Payment Status">{{housingLocation?.status}}</div>
+      </li>
+    </ul>
+  </div>
+  <h2>Activity List </h2>
+  <ng-container *ngFor="let location of housingLocationList">
+  <div class="container">
+    <h2> Objective {{location.ob_Name}} </h2>
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-1">Job Id</div>
+        <div class="col col-2">Customer Name</div>
+        <div class="col col-3">Amount Due</div>
+        <div class="col col-4">Payment Status</div>
+      </li>
+      <li class="table-row">
+        <div class="col col-1" data-label="Job Id">{{location.goal}}</div>
+        <div class="col col-2" data-label="Customer Name">{{location.initial_date}}</div>
+        <div class="col col-3" data-label="Amount">{{location.final_date}}</div>
+        <div class="col col-4" data-label="Payment Status">{{location.status}}</div>
+      </li>
+    </ul>
+  </div>
+</ng-container>

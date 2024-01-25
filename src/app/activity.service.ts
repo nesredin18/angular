@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { Taskin } from './taskin';
+import { Taskin } from './objectives/taskin';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -29,7 +29,7 @@ export class ActivityService {
 
   submitApplication(Objective_ID:number,Ob_Name: string, Ob_Description: string, Initial_date: string, Final_date: string, Status: string, Goal: string, Result: string) {
     const data = {
-      Objective_Id:Objective_ID,
+      Objective_id:Objective_ID,
       Name: Ob_Name,
       Description: Ob_Description,
       Initial_date: Initial_date,

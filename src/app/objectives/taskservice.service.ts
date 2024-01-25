@@ -78,6 +78,12 @@ export class TaskserviceService {
     const response = await fetch(`${this.url + 'objective/'}${id}`, { headers: headers });
     return await response.json() ?? {};
   }
+
+  async getHousingLocationByObjId(id: number): Promise<Taskin[]> {
+    const headers = this.convertHeaders(this.getHttpOptions().headers);
+    const response = await fetch(`${this.url + 'activity/obj/'}${id}`, { headers: headers });
+    return await response.json() ?? {};
+  }
   
   
 }

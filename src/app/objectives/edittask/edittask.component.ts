@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { SidebarService } from '../sidebar.service';
+import { SidebarService } from '../../common/sidebar.service';
 @Component({
   selector: 'app-edittask',
   standalone: true,

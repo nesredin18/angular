@@ -1,13 +1,13 @@
 import { CommonModule, } from '@angular/common';
 import { Component,inject,OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { TaskserviceService } from '../taskservice.service';
+import { TaskserviceService } from '../../objectives/taskservice.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Taskin } from '../taskin';
+import { Taskin } from '../../objectives/taskin';
 import { response } from 'express';
-import { ActivityService } from '../activity.service';
-import { SidebarService } from '../sidebar.service';
+import { ActivityService } from '../../activity.service';
+import { SidebarService } from '../../common/sidebar.service';
 import { Subscription } from 'rxjs';
 
 @Component({

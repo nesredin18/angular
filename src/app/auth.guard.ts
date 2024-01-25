@@ -1,6 +1,6 @@
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanActivateFn } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { LoginService } from './login.service';
+import { LoginService } from './users/login.service';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import{ TasksComponent } from './tasks/tasks.component';
+import { TasksComponent } from './objectives/tasks/tasks.component';
 import { RouterLinkActive } from '@angular/router';
 import { RouterLink } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';

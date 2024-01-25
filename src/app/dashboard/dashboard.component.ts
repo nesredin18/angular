@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SidebarService } from '../sidebar.service';
+import { SidebarService } from '../common/sidebar.service';
 
 @Component({
   selector: 'app-dashboard',

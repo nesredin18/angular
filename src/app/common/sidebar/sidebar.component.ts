@@ -1,7 +1,7 @@
 import { Component,EventEmitter, Output  } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { SidebarService } from '../../sidebar.service';
+import { SidebarService } from '../sidebar.service';
 
 @Component({
   selector: 'app-sidebar',

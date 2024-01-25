@@ -1,8 +1,8 @@
 import { Component,inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule,FormBuilder, } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { TaskserviceService } from '../taskservice.service';
-import { Taskin } from '../taskin';
+import { TaskserviceService } from '../../objectives/taskservice.service';
+import { Taskin } from '../../objectives/taskin';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
