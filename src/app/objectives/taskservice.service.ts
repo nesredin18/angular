@@ -3,6 +3,7 @@ import { Taskin } from './taskin';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Service } from '../terms/service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,9 @@ export class TaskserviceService {
     return httpOptions;
   }
 
-  submitApplication(Ob_Name: string, Ob_Description: string, Initial_date: string, Final_date: string, Status: string, Goal: string, Result: string) {
+  submitApplication(Terms:number[],Ob_Name: string, Ob_Description: string, Initial_date: string, Final_date: string, Status: string, Goal: string, Result: string) {
     const data = {
+      Term_Id:Terms,
       Ob_Name: Ob_Name,
       Ob_Description: Ob_Description,
       Initial_date: Initial_date,
@@ -38,8 +40,9 @@ export class TaskserviceService {
     return this.http.post(this.url + 'objective/', data, this.getHttpOptions());
   }
 
-  submitApplication2(id: number, Ob_Name: string, Ob_Description: string, Initial_date: Date, Final_date: Date, Status: string, Goal: string, Result: string) {
+  submitApplication2(Terms:number[],id: number, Ob_Name: string, Ob_Description: string, Initial_date: Date, Final_date: Date, Status: string, Goal: string, Result: string) {
     const data = {
+      Term_Id:Terms,
       Ob_Name: Ob_Name,
       Ob_Description: Ob_Description,
       Initial_date: Initial_date,
@@ -72,12 +75,15 @@ export class TaskserviceService {
     const response = await fetch(this.url + 'objective', { headers: headers });
     return await response.json() ?? [];
   }
+
+  
   
   async getHousingLocationById(id: number): Promise<Taskin> {
     const headers = this.convertHeaders(this.getHttpOptions().headers);
     const response = await fetch(`${this.url + 'objective/'}${id}`, { headers: headers });
     return await response.json() ?? {};
   }
+ 
 
   async getHousingLocationByObjId(id: number): Promise<Taskin[]> {
     const headers = this.convertHeaders(this.getHttpOptions().headers);

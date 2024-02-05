@@ -1,7 +1,25 @@
+<div id="content"[ngClass]="status ? 'hide' : ''">
 <section class="listing-apply">
   <h2 class="section-heading">Submit Your Task</h2>
   <form [formGroup]="taskForm" (submit)="submitTask()">
     <!-- Input for Ob_Name -->
+
+    <section>
+     
+  <label for="Select Terms">Example Options</label>
+  <ng-select 
+  
+  [items]="options"
+  bindLabel="name"
+  bindValue="id"
+  placeholder="Select Category"
+  appendTo="body"
+  [multiple]="true"
+  formControlName="ExampleOptions">
+</ng-select>
+
+</section>
+  
     <label for="ob-name">Objective Name</label>
     <input id="ob-name" type="text" formControlName="Ob_Name">
 
@@ -29,6 +47,13 @@
     <label for="result">Result</label>
     <input id="result" type="text" formControlName="Result">
 
+
+
+
+
+
     <button type="submit" class="primary">Submit Task</button>
+
   </form>
 </section>
+</div>

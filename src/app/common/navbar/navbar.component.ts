@@ -13,6 +13,19 @@ import { LoginService } from '../../users/login.service';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+
+  dropdowns: { [key: string]: boolean } = {};
+
+  toggleDropdown(dropdownId: string, event: Event) {
+    if (this.status){
+      this.editdashboard();
+      this.sidebarService.toggleSidebar();
+    }
+    event.stopPropagation(); // Prevent the click from closing the dropdown immediately
+    this.dropdowns[dropdownId] = !this.dropdowns[dropdownId];
+
+  }
+
 loginservice: LoginService = inject(LoginService);
 
   private subscription: Subscription;
@@ -23,9 +36,19 @@ loginservice: LoginService = inject(LoginService);
     this.subscription = this.sidebarService.sidebarStatus$.subscribe(
       (      status: boolean) => {
         this.status = status;
-        this.editdashboard(); // Call editdashboard on status change
+        this.editdashboard();
+   // Call editdashboard on status change
       }
     );
+  }
+
+  ngOnInit(): void {
+    // Close all dropdowns if clicked outside
+    document.addEventListener('click', () => {
+      Object.keys(this.dropdowns).forEach(key => {
+        this.dropdowns[key] = false;
+      });
+    });
   }
 
 

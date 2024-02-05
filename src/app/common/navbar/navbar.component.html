@@ -12,17 +12,30 @@
         </a>
         </li>
         
-    <li>
-      <a [routerLink]="['/home/tasks']">
-        <i class='bx bxs-shopping-bag-alt' ></i>
-        <span class="text">Create Objectives</span>
+    <li class="dropdown" (click)="toggleDropdown('objectives', $event)">
+      <a href="javascript:void(0)" class="dropbtn">
+        <i class='bx bxs-shopping-bag-alt' ></i> <!-- Placeholder for your icon -->
+        <span class="text">Objectives</span>
+        <i class='bx bx-chevron-down arrow'></i> <!-- Down arrow icon -->
       </a>
+      <div class="dropdown-content" [class.show]="dropdowns['objectives']">
+        <a [routerLink]="['/home/tasks']">Create Objective</a>
+        <a [routerLink]="['/home/obj']">Manage Objective</a>
+      </div>
     </li>
-    <li>
-      <a [routerLink]="['/home/taskdetail']">
-        <i class='bx bxs-doughnut-chart' ></i>
-        <span class="text">Manage Objectives</span>
+    
+    
+
+    <li class ="dropdown" (click)="toggleDropdown('terms', $event)">
+      <a href="javascript:void(0)" class="dropbtn">
+        <i class='bx bxs-doughnut-chart' ></i> <!-- Placeholder for your icon -->
+        <span class="text">Terms</span>
+        <i class='bx bx-chevron-down arrow'></i> <!-- Down arrow icon -->
       </a>
+      <div class="dropdown-content" [class.show]="dropdowns['terms']">
+        <a [routerLink]="['/home/addterm']">Create Terms</a>
+        <a [routerLink]="['/home/terms']">Manage Terms</a>
+      </div>
     </li>
     <li>
       <a href="#">

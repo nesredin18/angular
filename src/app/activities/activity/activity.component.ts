@@ -1,14 +1,14 @@
 import { CommonModule, } from '@angular/common';
-import { Component,inject,OnInit } from '@angular/core';
+import { Component,inject,OnInit,HostListener } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { TaskserviceService } from '../../objectives/taskservice.service';
+
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Taskin } from '../../objectives/taskin';
-import { response } from 'express';
-import { ActivityService } from '../../activity.service';
+
+import { ActivityService } from '../activity.service';
 import { SidebarService } from '../../common/sidebar.service';
 import { Subscription } from 'rxjs';
+import { SharedService } from '../../sharedservice';
 
 @Component({
   selector: 'app-activity',
@@ -19,12 +19,35 @@ import { Subscription } from 'rxjs';
 })
 export class ActivityComponent {
 
+  @HostListener('window:beforeunload', ['$event'])
+  unloadNotification($event: any) {
+    if (this.needToConfirm()) {
+      $event.returnValue = true;
+      
+
+    }
+    this.router.navigate(['/home/objdetail',this.receivedData]);
+  }
+
+  
+
+  needToConfirm(): boolean {
+    return this.completed; // 
+  }
+
+  receivedData: any;
+  completed:boolean=true;
+  ngOnInit() {
+    this.sharedService.currentData.subscribe(data => {
+      this.receivedData = data;
+    });
+  }
 
 
   private subscription: Subscription;
   status = true;
 
-  constructor(private sidebarService: SidebarService,private router: Router) {
+  constructor(private sidebarService: SidebarService,private router: Router,private sharedService:SharedService) {
     // Subscribe to the sidebar status
     this.subscription = this.sidebarService.sidebarStatus$.subscribe(
       (      status: boolean) => {
@@ -59,13 +82,33 @@ ngOnDestroy() {
   housingLocationId = parseInt(this.route.snapshot.params['id'], 10);
 
 
-
+  deleteTask() {
+    // Confirm before deleting
+    const userConfirmed = confirm('Are you sure you want to delete this task?');
+  
+    if (userConfirmed) {
+      this.taskservice.deleteActivity(this.housingLocationId).subscribe(
+        response => {
+          alert('Task successfully deleted.');
+          this.completed=false;
+          // Additional actions if needed
+          this.router.navigate(['/home/objdetail',this.receivedData]);
+        },
+        error => {
+          alert('Error during deletion: ' + error.message);
+        }
+      );
+    } else {
+      // User clicked 'Cancel', do nothing
+      alert('Deletion cancelled.');
+    }
+  }
   
 
   submitTask() {
     
 
-    this.taskservice.submitApplication(
+    this.taskservice.CreateActivity(
       this.housingLocationId,
       this.taskForm.value.Ob_Name ??'',
       this.taskForm.value.Ob_Description ??'',
@@ -81,7 +124,12 @@ ngOnDestroy() {
        if(haveactivity){
         this.taskForm.reset(); }
         else{
-          this.router.navigate(['/home']);
+          this.completed=false;
+          if(this.receivedData){
+          this.router.navigate(['/home/objdetail',this.receivedData]);}
+          else{
+            this.router.navigate(['/home'])
+          }
         }
       },
       error => {

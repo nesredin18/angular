@@ -2,6 +2,22 @@
 <section class="listing-apply">
   <h2 class="section-heading">Edit Task</h2>
   <form [formGroup]="taskForm" (submit)="submitTask()">
+
+    <section>
+     
+      <label for="example-options">Example Options</label>
+      <ng-select 
+      [items]="options"
+      bindLabel="name"
+      bindValue="id"
+      placeholder="Select Category"
+      appendTo="body"
+      [multiple]="true"
+      formControlName="ExampleOptions">
+    </ng-select>
+    
+    </section>
+      
     <!-- Input for Ob_Name -->
     <label for="ob-name">Objective Name</label>
     <input id="ob-name" type="text" formControlName="Ob_Name">

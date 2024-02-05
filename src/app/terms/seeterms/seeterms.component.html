@@ -1,0 +1,12 @@
+<div id="content"[ngClass]="status ? 'hide' : ''">
+<ng-container *ngFor="let location of housingLocationList">
+    <ol style="--length: 5" role="list">
+        <li (click)="redirectToPage(location.id)" style="--i: 4">
+            <h3>{{ location.name }}</h3>
+            <p>{{location.description}}</p>
+          </li>
+          
+        
+    </ol>
+    </ng-container>
+</div>

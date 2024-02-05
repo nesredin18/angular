@@ -1,4 +1,4 @@
-
+<div id="content"[ngClass]="status ? 'hide' : ''">
 <div class="container">
     <h2> Objective {{housingLocation?.ob_Name}} </h2>
     <ul class="responsive-table">
@@ -14,6 +14,10 @@
         <div class="col col-3" data-label="Amount">{{housingLocation?.final_date}}</div>
         <div class="col col-4" data-label="Payment Status">{{housingLocation?.status}}</div>
       </li>
+      <div class="bu">
+      <button type="button" (click)="redirectToPage(housingLocation?.id)" class="primary">Edit Objective</button> 
+      <button type="button" class="delete" (click)="deleteTask()" >Delete Task</button>
+    </div>
     </ul>
   </div>
   <h2>Activity List </h2>
@@ -33,6 +37,14 @@
         <div class="col col-3" data-label="Amount">{{location.final_date}}</div>
         <div class="col col-4" data-label="Payment Status">{{location.status}}</div>
       </li>
+      <div class="bu">
+        <button type="button" (click)="redirectToeditactivityPage(location?.id)" class="primary">Edit Objective</button> 
+        <button type="button" class="delete" (click)="deleteAct(location?.id)" >Delete Task</button>
+      </div>
     </ul>
   </div>
 </ng-container>
+<div class="act">
+<button type="button" (click)="redirectToactivityPage(housingLocation?.id)" class="primary">Add Activity</button> 
+</div>
+</div>

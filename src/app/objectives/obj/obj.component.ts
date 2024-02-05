@@ -1,10 +1,12 @@
 import { Component, inject, } from '@angular/core';
 import { TaskserviceService } from '../taskservice.service';
-import { Taskin } from '../taskin';
+import { Taskin, objective } from '../taskin';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import{HttpClientModule} from '@angular/common/http';
+import { Subscription } from 'rxjs';
+import { SidebarService } from '../../common/sidebar.service';
 
 @Component({
   selector: 'app-obj',
@@ -14,15 +16,32 @@ import{HttpClientModule} from '@angular/common/http';
   styleUrl: './obj.component.css'
 })
 export class ObjComponent {
+  private subscription: Subscription;
+  status = true;
+
+  editdashboard()
+  {
+    this.status = !this.status;       
+  }
+  
+  ngOnDestroy() {
+    this.subscription.unsubscribe(); // Prevent memory leaks
+  }
+
 
   housingService: TaskserviceService = inject(TaskserviceService)
   housingLocationList: Taskin[] = [];
-  filteredLocationList: Taskin[] = [];
-  constructor(private router: Router) {
-    this.housingService.getAllHousingLocations().then((housingLocationList: Taskin[]) => {
-      this.housingLocationList = housingLocationList;
-      this.filteredLocationList = housingLocationList;
+  constructor(private router: Router,private sidebarService:SidebarService) {
+    this.housingService.getAllHousingLocations().then((response: Taskin[]) => {
+      this.housingLocationList = response;
+
     });
+    this.subscription = this.sidebarService.sidebarStatus$.subscribe(
+      (      status: boolean) => {
+        this.status = status;
+        this.editdashboard(); // Call editdashboard on status change
+      }
+    );
   }
 
   redirectToPage(location:any) {

@@ -7,5 +7,10 @@ export interface Taskin {
     status: string;
     goal: number;
     result: number;
+    terms: any[];
+}
+export interface objective{
+    $id: string;
+    $values: Taskin[];
 }
 

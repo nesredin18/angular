@@ -1,0 +1,29 @@
+
+<div id="content"[ngClass]="status ? 'hide' : ''">
+<section class="listing-apply">
+  
+    <h2 class="section-heading">Submit Your Task</h2>
+    <form [formGroup]="termForm" (submit)="submitTask()">
+      <!-- Input for Ob_Name -->
+      <label for="ob-name">Objective Name</label>
+      <input id="ob-name" type="text" formControlName="Name">
+
+      <!-- Input for Ob_Description -->
+      <label for="ob-description">Objective Description</label>
+      <input id="ob-description" type="text" formControlName="Description">
+  
+      <!-- Input for Initial_date -->
+      <label for="initial-date">Initial Date</label>
+      <input id="initial-date" type="date" formControlName="Initial_date">
+  
+      <!-- Input for Final_date -->
+      <label for="final-date">Final Date</label>
+      <input id="final-date" type="date" formControlName="Final_date">
+  
+ 
+      <button type="submit" class="primary">Submit Task</button>
+    </form>
+ 
+  </section>
+</div>
+  

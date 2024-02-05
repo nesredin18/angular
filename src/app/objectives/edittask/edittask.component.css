@@ -36,6 +36,25 @@
     border-radius: 4px;
     font-size: 16px;
   }
+
+  /* Input Styling */
+input[type="date"] {
+  width: 100%; /* Full width to maximize click area */
+  padding: 12px 20px; /* Adequate padding for touch friendliness */
+  margin-bottom: 20px; /* Space between consecutive fields */
+  border: 1px solid #ccc; /* Light grey border */
+  border-radius: 4px; /* Rounded borders for a modern look */
+  box-sizing: border-box; /* Border and padding included in width */
+  background-color: #f8f8f8; /* Slight background to differentiate from page */
+  color: #333; /* Dark grey for text for better readability */
+}
+
+/* Focus Styling */
+input[type="date"]:focus {
+  border-color: #4A90E2; /* Highlight color when focused */
+  outline: none; /* Remove default focus outline */
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.5); /* Soft glow effect on focus */
+}
   
   /* Styling for the submit button */
   button.primary {

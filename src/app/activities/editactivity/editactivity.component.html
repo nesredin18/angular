@@ -1,0 +1,37 @@
+<div id="content"[ngClass]="status ? 'hide' : ''">
+    <section class="listing-apply">
+      <h2 class="section-heading">Edit Task</h2>
+      <form [formGroup]="taskForm" (submit)="submitTask()">
+        <!-- Input for Ob_Name -->
+        <label for="name">Objective Name</label>
+        <input id="name" type="text" formControlName="Name">
+    
+        <!-- Input for Ob_Description -->
+        <label for="description">Objective Description</label>
+        <input id="description" type="text" formControlName="Description">
+    
+        <!-- Input for Initial_date -->
+        <label for="initial-date">Initial Date</label>
+        <input id="initial-date" type="date" formControlName="Initial_date">
+    
+        <!-- Input for Final_date -->
+        <label for="final-date">Final Date</label>
+        <input id="final-date" type="date" formControlName="Final_date">
+    
+        <!-- Input for Status -->
+        <label for="status">Status</label>
+        <input id="status" type="text" formControlName="Status">
+    
+        <!-- Input for Goal -->
+        <label for="goal">Goal</label>
+        <input id="goal" type="text" formControlName="Goal">
+    
+        <!-- Input for Result -->
+        <label for="result">Result</label>
+        <input id="result" type="text" formControlName="Result">
+    
+        <button type="submit" class="primary">Submit Task</button>
+        <button type="button" (click)="deleteTask()">Delete Task</button>
+      </form>
+    </section>
+    </div>
